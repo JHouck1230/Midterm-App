@@ -3,8 +3,10 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var jwt = require('jwt-simple');
+require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const BREWERY_DB_API = process.env.BREWERY_DB_API;
 
 var User;
 
@@ -13,7 +15,12 @@ var userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: String,
   image: String,
-  beers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Beer', default: [] }]
+  beers: [{
+    name: { type: String, unique: true, required: true },
+    sampled: Boolean,
+    rating: Number,
+    comments: String
+  }]
 });
 
 userSchema.statics.authMiddleware = function(req, res, next) {
@@ -44,7 +51,7 @@ userSchema.methods.generateToken = function () {
 };
 
 userSchema.statics.authenticate = function(userObj, cb) {
-  User.findOne({username: userObj.username}, function(err, dbUser) {
+  User.findOne({email: userObj.email}, function(err, dbUser) {
     if(err || !dbUser) {
       return cb("Authentication failed.");
     }
@@ -64,7 +71,7 @@ userSchema.statics.register = function(userObj, cb) {
       return cb(err);
     }
     User.create({
-      username: userObj.username,
+      email: userObj.email,
       password: hash
     }, function(err, user) {
       if(err) {

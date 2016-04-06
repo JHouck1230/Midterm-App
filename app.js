@@ -33,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-app.use('/beers', require('./routes/beers'));
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

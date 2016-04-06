@@ -5,6 +5,12 @@ var router = express.Router();
 
 var User = require('../models/user');
 
+router.get('/', function(req, res) {
+  User.find({}, function(err, users) {
+    res.status(err ? 400 : 200).send(err || users);
+  })
+})
+
 router.get('/usernames', User.authMiddleware, function(req, res) {
   User.find({_id: {$ne: req.user._id}}, function(err, users) {
     res.status(err ? 400 : 200).send(err || users);
