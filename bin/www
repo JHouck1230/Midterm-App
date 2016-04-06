@@ -1,12 +1,12 @@
 'use strict';
 
-#!/usr/bin/env node
+// !/usr/bin/env node
 
 /**
  * Module dependencies.
  */
 
-var rootDir = 
+var rootDir = 'midterm';
 
 var app = require('../app');
 var debug = require('debug')(`${rootDir}:server`);

@@ -9,8 +9,11 @@ const JWT_SECRET = process.env.JWT_SECRET;
 var User;
 
 var userSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true },
-  password: { type: String, required: true }
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  name: String,
+  image: String,
+  beers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Beer', default: [] }]
 });
 
 userSchema.statics.authMiddleware = function(req, res, next) {

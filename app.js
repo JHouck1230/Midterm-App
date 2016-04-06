@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var database =
+var database = 'brewery';
 
 const mongoUrl = process.env.MONGOLAB_URI || `mongodb://localhost/${database}`;
 
@@ -33,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/beers', require('./routes/beers'));
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
