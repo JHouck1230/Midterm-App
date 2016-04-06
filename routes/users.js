@@ -8,17 +8,13 @@ var User = require('../models/user');
 router.get('/', function(req, res) {
   User.find({}, function(err, users) {
     res.status(err ? 400 : 200).send(err || users);
-  })
-})
-
-router.get('/usernames', User.authMiddleware, function(req, res) {
-  User.find({_id: {$ne: req.user._id}}, function(err, users) {
-    res.status(err ? 400 : 200).send(err || users);
-  }).select('username');
+  });
 });
 
-router.get('/profile', User.authMiddleware, function(req, res) {
-  res.send(req.user);
+router.get('/randomBeer', User.authMiddleware, function(req, res) {
+  User.randomBeer(req.user, function(err, beer) {
+    res.send(beer);
+  });
 });
 
 router.post('/authenticate', function(req, res) {

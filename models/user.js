@@ -3,6 +3,8 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var jwt = require('jwt-simple');
+var request = require('request');
+
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -16,8 +18,9 @@ var userSchema = new mongoose.Schema({
   name: String,
   image: String,
   beers: [{
-    name: { type: String, unique: true, required: true },
-    sampled: Boolean,
+    id: { type: String, required: true },
+    name: { type: String, required: true },
+    sampled: { type: String, default: "" },
     rating: Number,
     comments: String
   }]
@@ -83,6 +86,20 @@ userSchema.statics.register = function(userObj, cb) {
     });
   });
 };
+
+userSchema.statics.randomBeer = function(user, cb) {
+  request.get(`http://api.brewerydb.com/v2/beer/random/?key=${BREWERY_DB_API}`, function(err, res, body) {
+    // if(user.beers.length) { 
+    //   user.beers.forEach(beer => {
+    //     if (beer.id === body.data.id) {
+    //       User.randomBeer();
+    //     } else {
+          cb(err, body);
+    //     }
+    //   })
+    // }
+  })
+}
 
 User = mongoose.model('User', userSchema);
 
