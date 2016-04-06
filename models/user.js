@@ -15,7 +15,7 @@ var User;
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  name: String,
+  name: { type: String, required: true },
   image: String,
   beers: [{
     id: { type: String, required: true },
@@ -75,6 +75,7 @@ userSchema.statics.register = function(userObj, cb) {
     }
     User.create({
       email: userObj.email,
+      name: userObj.name,
       password: hash
     }, function(err, user) {
       if(err) {

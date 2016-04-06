@@ -5,7 +5,7 @@
         <h3 class='col-sm-10 col-sm-offset-2'>Returning User</h3>
         <div class="form-group">
           <div class="col-sm-10 col-sm-offset-2">
-            <input type="text" name="username" id="username" ng-model='loginUser.username' class="form-control" placeholder="Username">
+            <input type="email" name="email" id="email" ng-model='loginUser.email' class="form-control" placeholder="Email@address.com">
           </div>
         </div>
         <div class="form-group">
@@ -25,7 +25,12 @@
         <h3 class='col-sm-10 col-sm-offset-2'>New User</h3>
         <div class="form-group">
           <div class="col-sm-10 col-sm-offset-2">
-            <input type="text" name="username" id="username" ng-model='regUser.username' class="form-control" placeholder="Username" required>
+            <input type="email" name="email" id="email" ng-model='regUser.email' class="form-control" placeholder="Email@address.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <input type="text" name="name" id="name" ng-model='regUser.name' class="form-control" placeholder="Name" required>
           </div>
         </div>
         <div class="form-group">

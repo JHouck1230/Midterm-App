@@ -2,13 +2,28 @@
 
 var express = require('express');
 var router = express.Router();
+var request = require('request');
+
+require('dotenv').config();
 
 var User = require('../models/user');
+
+const BREWERY_DB_API = process.env.BREWERY_DB_API;
 
 router.get('/', function(req, res) {
   User.find({}, function(err, users) {
     res.status(err ? 400 : 200).send(err || users);
   });
+});
+
+router.get('/beers/:page', function(req, res) {
+  request.get(`http://api.brewerydb.com/v2/beers/?ibu="+0"&p=${req.params.page}&key=${BREWERY_DB_API}`, function(err, resp, body) {
+    res.status(err ? 400 : 200).send(err || body);
+  });
+});
+
+router.get('/profile', User.authMiddleware, function(req, res) {
+  res.send(req.user);
 });
 
 router.get('/randomBeer', User.authMiddleware, function(req, res) {

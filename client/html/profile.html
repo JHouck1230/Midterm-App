@@ -1,25 +1,11 @@
 <div class="container-fluid">
-	<nav class="navbar navbar-default" ng-controller='navbarCtrl'>
-		<div class="row">
-			<div class="col-sm-11">
-				<ul class="nav nav-tabs">
-				  <li role="presentation"><a ui-sref='inbox'>Inbox</a></li>
-				  <li role="presentation"><a ui-sref='compose'>Compose</a></li>
-				  <li role="presentation"><a ui-sref='profile'>Profile</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-1">
-				<button class='btn' ng-click='logout(user)'>Logout</button>
-			</div>
-		</div>
-	</nav>
 <h1>Edit Profile</h1>
 	<div class="row">
 		<div class="col-sm-2">
 			<div ng-hide='userEditing'>
 				<ul class="list-group">
 				  <li class="list-group-item">{{user.email}}</li>
-				  <li class="list-group-item">{{user.phone}}</li>
+				  <li class="list-group-item">{{user.name}}</li>
 				</ul>
 			  <button ng-click='editUser()' class="btn btn-warning">Edit Info</button>
 			</div>
@@ -28,7 +14,7 @@
 			  <div class="form-group">
 			    <input id='userImage' type="text" class='form-control' ng-model='user.image' placeholder="Photograph URL">
 			    <input type="email" ng-model='user.email' class="form-control" id="userEmail" placeholder="Email@Address.com">
-			    <input type="tel" ng-model='user.phone' class="form-control" id="userPhone" placeholder="Phone Number">
+			    <input type="tel" ng-model='user.name' class="form-control" id="userName" placeholder="Name">
 			  </div>
 			  <button type="submit" class="btn btn-primary">Submit</button>
 			</form>
