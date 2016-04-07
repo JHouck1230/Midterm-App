@@ -28,6 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
 });
 
-app.run(function(AuthService) {
+app.run(function(AuthService, $state) {
+	$state.go('home');
 	AuthService.init();
 });

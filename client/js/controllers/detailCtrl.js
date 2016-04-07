@@ -10,4 +10,6 @@ app.controller('detailCtrl', function($scope, BeerService) {
 			console.log($scope.beerDetail);
 		});
 
+	
+
 });

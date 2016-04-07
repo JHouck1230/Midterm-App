@@ -17,13 +17,13 @@ router.get('/', function(req, res) {
 });
 
 router.get('/beers/:page', function(req, res) {
-  request.get(`http://api.brewerydb.com/v2/beers/?ibu="+0"&p=${req.params.page}&key=${BREWERY_DB_API}`, function(err, resp, body) {
+  request.get(`https://api.brewerydb.com/v2/beers/?ibu="+0"&p=${req.params.page}&key=${BREWERY_DB_API}`, function(err, resp, body) {
     res.status(err ? 400 : 200).send(err || body);
   });
 });
 
 router.get('/beerDetail/:id', User.authMiddleware, function(req, res) {
-  request.get(`http://api.brewerydb.com/v2/beer/${req.params.id}?key=${BREWERY_DB_API}`, function(err, resp, body) {
+  request.get(`https://api.brewerydb.com/v2/beer/${req.params.id}?key=${BREWERY_DB_API}`, function(err, resp, body) {
     res.status(err ? 400 : 200).send(err || body);
   });
 });

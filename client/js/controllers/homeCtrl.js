@@ -7,7 +7,6 @@ app.controller('homeCtrl', function($scope, BeerService) {
 			return BeerService.beers;
 		},function(beers) {
 			$scope.beers = beers;
-			console.log($scope.beers);
 		});
 
 	$scope.getDetail = function(beer) {

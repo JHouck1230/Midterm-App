@@ -1,1 +1,26 @@
 <h1>DETAIL</h1>
+
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" ng-src="{{beerDetail.labels.large}}" alt="No Image Available">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">{{beerDetail.name}}</h4>
+    <h6>Description</h6>
+    <p>
+    	{{beerDetail.description}}
+    </p>
+    <p>
+    	{{beerDetail.style.description}}
+    </p>
+    <h6>Tried it? Tell us about it.</h6>
+    <form>
+    	<label for="rating">Rating: {{beer.rating}}</label>
+    	<input id="rating" ng-model='beer.rating' type="range" min="0" max="10" step="1" value="5">
+    	<label for="sampled">Sampled it?</label>
+    	
+    </form>
+  </div>
+</div>
