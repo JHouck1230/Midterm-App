@@ -20,7 +20,7 @@ var userSchema = new mongoose.Schema({
   beers: [{
     id: { type: String, required: true },
     name: { type: String, required: true },
-    sampled: { type: String, default: "" },
+    sampled: { type: Boolean, default: false },
     rating: Number,
     comments: String
   }]

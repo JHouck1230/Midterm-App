@@ -16,11 +16,28 @@
     	{{beerDetail.style.description}}
     </p>
     <h6>Tried it? Tell us about it.</h6>
-    <form>
+
+		<div ng-show='userBeerDetail && editing'>
+			<p for="rating">Rating: {{userBeerDetail.rating}}</p>
+    	<p for="sampled">Sampled it?</p>
+			<input type="checkbox" ng-model='userBeerDetail.sampled'>
+			<span ng-show='userBeerDetail.sampled'>Yes</span>
+			<span ng-hide='userBeerDetail.sampled'>No</span><br>
+			<p for="comments">Comments</p><br>
+			<textarea ng-model='userBeerDetail.comments' id="comments" cols="60" rows="6" placeholder="Type them here"></textarea><br>
+		</div>
+
+    <form ng-hide='userBeerDetail && editing'>
     	<label for="rating">Rating: {{beer.rating}}</label>
     	<input id="rating" ng-model='beer.rating' type="range" min="0" max="10" step="1" value="5">
     	<label for="sampled">Sampled it?</label>
-    	
+			<input type="checkbox" ng-model='beer.sampled'>
+			<span ng-show='beer.sampled'>Yes</span>
+			<span ng-hide='beer.sampled'>No</span><br>
+			<label for="comments">Comments?</label><br>
+			<textarea ng-model='beer.comments' id="comments" cols="60" rows="6" placeholder="Type them here"></textarea><br>
+			<button class='btn btn-success' ng-click='saveDetails()'>Save</button>
+			<button class='btn btn-danger' ng-click='clearDetails()'>Clear</button>
     </form>
   </div>
 </div>

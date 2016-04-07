@@ -11,4 +11,9 @@ app.service('BeerService', function($http) {
 		.then(res => this.beerDetail = res.data.data,
 					err => console.error(err));
 	}
+
+	this.saveDetails = function(beer) {
+		$http.post('/users/saveDetails', beer)
+	}
+
 });
