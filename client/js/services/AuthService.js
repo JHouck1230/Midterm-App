@@ -2,7 +2,7 @@
 
 var app = angular.module('beerApp');
 
-app.service('AuthService', function($http, $state, UserService) {	
+app.service('AuthService', function($http, $state, UserService, BeerService) {	
 
 	this.logout = function() {
 		$http.delete('/users/authenticate')
@@ -35,7 +35,7 @@ app.service('AuthService', function($http, $state, UserService) {
 		}, err => console.error(err));
 		$http.get('/users/beers/1')
 		.then(res => {
-			console.log(res);
+			BeerService.set(res.data.data)
 		}, err => console.error(err));
 	};
 

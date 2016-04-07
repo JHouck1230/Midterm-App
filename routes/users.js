@@ -22,6 +22,12 @@ router.get('/beers/:page', function(req, res) {
   });
 });
 
+router.get('/beerDetail/:id', User.authMiddleware, function(req, res) {
+  request.get(`http://api.brewerydb.com/v2/beer/${req.params.id}?key=${BREWERY_DB_API}`, function(err, resp, body) {
+    res.status(err ? 400 : 200).send(err || body);
+  });
+});
+
 router.get('/profile', User.authMiddleware, function(req, res) {
   res.send(req.user);
 });
