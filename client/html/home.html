@@ -10,7 +10,7 @@
 	        <h3>{{beer.name}}</h3>
 	        <p>{{beer.style.description}}</p>
 	        <p>
-		        <a ui-sref='detail' ng-click='getDetail(beer)' class="btn btn-primary" role="button">Save it!</a>
+		        <a ng-if="$scope.user" ui-sref='detail' ng-click='getDetail(beer)' class="btn btn-primary" role="button">Save it!</a>
 	        </p>
 	      </div>
 	    </div>
